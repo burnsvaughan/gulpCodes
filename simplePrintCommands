@@ -1,0 +1,15 @@
+
+const { task } = require('gulp');
+const { series } = require('gulp');
+
+task('printName', function(finish) {
+  console.log('My name is Burns Vaughan')
+  finish();
+});
+
+task('printAge', function(finish) {
+  console.log('My age is 32')
+  finish();
+});
+
+task('default', series('printName', 'printAge'));
