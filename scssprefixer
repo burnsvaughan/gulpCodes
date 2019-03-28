@@ -1,0 +1,36 @@
+
+const { task } = require('gulp');
+const { series } = require('gulp');
+const { gulp } = require('gulp');
+const { src } = require('gulp');
+const { dest } = require('gulp');
+
+var autoprefixer = require('gulp-autoprefixer')
+
+var sass = require('gulp-sass');
+ 
+sass.compiler = require('node-sass');
+
+// task('printName', function(finish) {
+//   console.log('My name is Burns Vaughan')
+//   finish();
+// });
+
+// task('printAge', function(finish) {
+//   console.log('My age is 32')
+//   finish();
+// });
+
+// task('default', series('printAge', 'printName'));
+
+task('sass', function () {
+  return src('./src/scss/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+    .pipe(dest('./public/css'));
+});
+
+
